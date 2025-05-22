@@ -1,0 +1,72 @@
+---
+title: "flat_get_info.Rmd empty"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+<!--
+ You need to run the 'description' chunk in the '0-dev_history.Rmd' file before continuing your code there.
+-->
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = FALSE)
+```
+
+# get_df_rows
+    
+```{r development-get_df_rows}
+library(glue)
+```
+  
+```{r function-get_df_rows}
+#' Title Calcul du nombres de lignes d'un dataframe
+#'
+#' @param df dataframe
+#' @return un message
+#' @export 
+#' @importFrom glue glue
+#' 
+get_df_nrows <- function(df) {
+  nrow_df <- nrow(df)
+  message(glue("The dataset is composed of {nrow_df} observations"))
+  return(nrow_df)
+}
+```
+
+```{r examples-get_df_nrows}
+get_df_nrows(df = iris)
+get_df_nrows(df = mtcars)
+```
+
+  
+```{r tests-get_df_nrows}
+test_that("get_df_nrows works", {
+  
+  toto <- structure(list(mpg= c(21,21) , cyl = c(6,6)), row.names=c("Mazda RX4", "Mazda RX4"), class = "data.frame")
+  expect_message(
+    object = get_df_nrows(df = mtcars),
+    regexp = "The dataset is composed of 32 observations"
+  )
+  
+  expect_message(
+    object = get_df_nrows(df = iris),
+    regexp = "The dataset is composed of 150 observations"
+  )
+})
+```
+
+
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+fusen::inflate(flat_file = "dev/flat_get_info.Rmd", vignette_name = "Get info about the dataset")
+```
+

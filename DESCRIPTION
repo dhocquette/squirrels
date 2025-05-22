@@ -1,0 +1,29 @@
+Package: squirrels
+Title: Calcul Du Nombre De Lignes
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Delphine", , , "dhocqquette@atih.sante.fr", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0000-0000-0000")),
+    person("Balbla", , , "blabla@atih.sante.fr", role = "aut",
+           comment = c(ORCID = "0000-0000-0000-0000"))
+  )
+Description: Cette fonction sert à calculer le nombre de lignes d'un
+    dataframe.
+License: MIT + file LICENSE
+Depends: 
+    R (>= 3.5)
+Imports: 
+    glue,
+    magrittr,
+    stringr
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: 
+    knitr
+Config/fusen/version: 0.7.1
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
