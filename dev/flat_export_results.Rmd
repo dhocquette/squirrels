@@ -33,7 +33,8 @@ library(tools)
 #' @param df df a exporter
 #' @param path chemin de sortie
 #' @return le chemin de sortie
-#' 
+#' @importFrom tools file_ext #ne pas oublier
+#' @importFrom readr write_csv2 #ne pas oublier
 #' @export
 save_as_csv <- function(df, path){
   
@@ -45,7 +46,7 @@ save_as_csv <- function(df, path){
     stop("Param 'path' must have csv extension")
   }
   
-  if (isFALSE(file.exists(dirname(path)))){
+  if (isFALSE(dir.exists(dirname(path)))){
     stop("Param 'path' must exist")
   }
     
@@ -57,12 +58,20 @@ save_as_csv <- function(df, path){
 ```
   
 ```{r example-save_as_csv}
-save_as_csv() #a finir
+mon_dossier_temp <- tempfile(pattern ="savecsv")
+dir.create(mon_dossier_temp)
+#dans la console : rstudio::filesPanelNaviguate(mon_dossier_temp)
+save_as_csv(df=iris, path=file.path(mon_dossier_temp, "output.csv"))
+#Ménage :
+unlink(mon_dossier_temp, recursive = TRUE)
 ```
   
 ```{r tests-save_as_csv}
 test_that("save_as_csv works", {
   expect_true(inherits(save_as_csv, "function")) 
+  mon_dossier_temp <- tempfile(pattern = "savecsv")
+  dir.create(mon_dossier_temp)
+  save_as_csv(df=iris, path = file.path(mon_dossier_temp, "output.csv"))
 })
 ```
   
