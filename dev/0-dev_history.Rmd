@@ -168,3 +168,8 @@ usethis::use_data_raw("data_demo_squirrels")
 chemin_inst <- system.file("nyc_squirrels_sample.csv", package = "squirrels")
 nyc_squirrels_sample <- readr::read_csv(chemin_inst)
 ```
+
+## GLOBAL VARIABLES
+```{r, eval=FALSE}
+checkhelper::print_globals(quiet=TRUE)
+```
